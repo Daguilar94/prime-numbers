@@ -33,17 +33,17 @@ const NumberForm = ({ number, isValid, isPrime, errorMessage, updateNumberValue,
                 >
                     {submitted ? "try again" : "Find out"}
                 </Button>
-                {submitted && <div>{isPrime ? "Yeap, is prime" : ":( is not prime"}</div>}
             </form>
+            {submitted && <div>{isPrime ? "Yeap, is prime" : ":( is not prime"}</div>}
         </Grid>
     );
 };
 
-const mapStateToProps = state => ({
-    number: state.form.number,
-    isValid: state.form.isValid,
-    isPrime: state.form.isPrime,
-    errorMessage: state.form.errorMessage
+const mapStateToProps = ({ form }) => ({
+    number: form.number,
+    isValid: form.isValid,
+    isPrime: form.isPrime,
+    errorMessage: form.errorMessage
 })
 
 const  mapDispatchToProps = (dispatch) => (
