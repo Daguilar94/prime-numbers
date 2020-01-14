@@ -1,8 +1,10 @@
 export const validateNumber = function(value) {
     let errorMessage = "";
     let isValidNumber = true;
-    const validInput = /^\d*$/.test(value);
-    const validSize = value <= Math.pow(2, 31) - 1;
+
+    const validInput = /(^-?\d+$)/.test(value) || value === "";
+    const isNumber = Number(value) || Number(value) === 0;
+    const validSize = isNumber && value <= Math.pow(2, 31) - 1 && value >= -Math.pow(2, 31) + 1;
 
     if (!validInput) {
         isValidNumber = false;

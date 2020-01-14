@@ -1,22 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import formActions from '../../redux/actions/form';
-import { Button, Grid, TextField } from '@material-ui/core';
+import { updateNumberValue, submitForm } from '../../redux/actions/form';
+import { Button, TextField } from '@material-ui/core';
 
-const NumberForm = ({ number, isValid, isPrime, errorMessage, updateNumberValue, setIsPrimeNumber }) => {
+const NumberForm = ({ number, isValid, isPrime, errorMessage, updateNumberValue, submitForm }) => {
     const submitted = typeof(isPrime) === "boolean";
     return (
-        <Grid
-          className="prime-app"
-          container
-          direction="row"
-          justify="center"
-          alignItems="center"
-        >
-            <form action="" onSubmit={(e) => setIsPrimeNumber(e, isPrime, number)}>
+        <section className="calucalator">
+            <form onSubmit={(e) => submitForm(e)} className="calculator__form">
                 <TextField
-                    xs={12}
                     disabled={submitted}
                     error={!isValid}
                     helperText={errorMessage || "Use number digits only"}
@@ -35,7 +27,7 @@ const NumberForm = ({ number, isValid, isPrime, errorMessage, updateNumberValue,
                 </Button>
             </form>
             {submitted && <div>{isPrime ? "Yeap, is prime" : ":( is not prime"}</div>}
-        </Grid>
+        </section>
     );
 };
 
@@ -46,8 +38,9 @@ const mapStateToProps = ({ form }) => ({
     errorMessage: form.errorMessage
 })
 
-const  mapDispatchToProps = (dispatch) => (
-    {...bindActionCreators(formActions, dispatch)}
-)
+const  mapDispatchToProps = (dispatch) => ({
+    updateNumberValue: args => dispatch(updateNumberValue(args)),
+    submitForm: args => dispatch(submitForm(args))
+})
 
 export default connect(mapStateToProps, mapDispatchToProps)(NumberForm);

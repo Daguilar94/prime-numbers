@@ -1,11 +1,12 @@
 import { validateNumber, isPrime as isPrimeNumber } from '../../utils';
+import { addHistoryItem } from './history';
 
 // Action types
 export const UPDATE_NUMBER_VALUE = "UPDATE_NUMBER_FIELD";
 export const SET_IS_PRIME = "SET_IS_PRIME";
 
 // Action creators
-const updateNumberValue = function(value) {
+export const updateNumberValue = function(value) {
     const { number, isValid = true, errorMessage = "" } = validateNumber(value);
     return {
         type: UPDATE_NUMBER_VALUE,
@@ -15,16 +16,27 @@ const updateNumberValue = function(value) {
     }
 }
 
-const setIsPrimeNumber = function(e, isPrime, number) {
-    e.preventDefault();
-
-    const value = typeof(isPrime) === "boolean" ? null : isPrimeNumber(Number(number));
-
+const setIsPrimeNumber = function(number, isPrime) {
     return {
         type: SET_IS_PRIME,
-        isPrime: value,
-        number: value === null ? "" : number
+        isPrime,
+        number
     }
 }
 
-export default { updateNumberValue, setIsPrimeNumber };
+export const submitForm = function(e) {
+    e.preventDefault();
+    
+    return (dispatch, getState) => {
+        const { history: { items }, form: { number, isPrime: currentIsPrime } } = getState();
+        const isSubmitting = currentIsPrime === null;
+
+        if (isSubmitting) {
+            const isPrime = items[number] !== undefined ? items[number] : isPrimeNumber(Number(number));
+            dispatch(setIsPrimeNumber (number, isPrime));
+            dispatch(addHistoryItem(number, isPrime));
+        } else {
+            dispatch(setIsPrimeNumber("", null));
+        }
+    }
+}

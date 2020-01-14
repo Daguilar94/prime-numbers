@@ -1,8 +1,9 @@
 import form from './reducers/form';
 import history from './reducers/history';
-import { createStore } from 'redux';
+import thunk from 'redux-thunk';
+import { createStore, applyMiddleware } from 'redux';
 import { combineReducers } from 'redux'
 
 const appReducer = combineReducers({ form, history });
 
-export default createStore(appReducer);
+export default createStore(appReducer, applyMiddleware(thunk));

@@ -11,10 +11,11 @@ const setHistoryVisibility = function(visible) {
     }
 };
 
-const addHistoryItem = function(item) {
+export const addHistoryItem = function(number, isPrime) {
     return {
         type: ADD_HISTORY_ITEM,
-        item
+        number,
+        isPrime
     }
 };
 

@@ -5,7 +5,9 @@ import {
 } from '../actions/history';
 
 const historyInitialState = {
-    items: [],
+    items: {},
+    primes: [],
+    notPrimes: [],
     visible: true
 };
 
@@ -17,14 +19,21 @@ export default function history(state = historyInitialState, action) {
                 visible: action.visible
             };
         case ADD_HISTORY_ITEM:
+            const key = action.isPrime ? 'primes' : 'notPrimes';
+            const items = state.items[action.number] !== undefined
+                ? {...state.items}
+                : {...state.items, [action.number]: action.isPrime }
+
             return {
                 ...state,
-                items: [...state.items, action.item]
+                [key]: [ ...state[key], action.number ],
+                items
             }
         case CLEAR_HISTORY:
             return {
                 ...state,
-                items: []
+                primes: [],
+                notPrimes: []
             }
         default:
             return state
