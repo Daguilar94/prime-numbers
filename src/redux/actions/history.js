@@ -4,10 +4,13 @@ export const ADD_HISTORY_ITEM = "ADD_HISTORY_ITEM";
 export const CLEAR_HISTORY = "CLEAR_HISTORY";
 
 // Action creators
-const setHistoryVisibility = function(visible) {
-    return {
-        type: SET_HISTORY_VISIBILITY,
-        visible
+export const setHistoryVisibility = function() {
+    return (dispatch, getState) => {
+        const { history: { visible }} = getState();
+        dispatch({
+            type: SET_HISTORY_VISIBILITY,
+            visible: !visible
+        })
     }
 };
 
@@ -19,10 +22,8 @@ export const addHistoryItem = function(number, isPrime) {
     }
 };
 
-const clearHistory = function() {
+export const clearHistory = function() {
     return {
         type: CLEAR_HISTORY
     }
 };
-
-export default { setHistoryVisibility, addHistoryItem, clearHistory };

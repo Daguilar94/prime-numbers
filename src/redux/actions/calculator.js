@@ -28,7 +28,7 @@ export const submitForm = function(e) {
     e.preventDefault();
     
     return (dispatch, getState) => {
-        const { history: { items }, form: { number, isPrime: currentIsPrime } } = getState();
+        const { history: { items }, calculator: { number, isPrime: currentIsPrime } } = getState();
         const isSubmitting = currentIsPrime === null;
 
         if (isSubmitting) {

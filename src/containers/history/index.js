@@ -1,32 +1,47 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import historyActions from '../../redux/actions/history';
+import {
+    setHistoryVisibility,
+    clearHistory
+} from '../../redux/actions/history';
+import HistoryNumber from '../../components/history-number';
+import { Button } from '@material-ui/core';
+import './styles.scss';
 
-const History = ({ primes, notPrimes }) => (
-    <section className="history">
-        <div className="history__primes">
-            <h2>Primes</h2>
-            <div>
-                {primes.map((num, index) => <h1 key={index}>{num}</h1>)}
+const History = ({ primes, notPrimes, visible, setHistoryVisibility }) => (
+    <section className={`history ${visible ? "history--visible" : ""}`}>
+        <Button
+            variant="outlined"
+            color="primary"
+            className="history__toggle"
+            onClick={setHistoryVisibility}
+        >
+            History
+        </Button>
+        <div className="history__section primes">
+            <h2 className="history__title">Primes</h2>
+            <div className="history__numbers">
+                {primes.map((num, index) => <HistoryNumber key={index} number={num} />)}
             </div>
         </div>
-        <div className="history__not-primes">
-            <h2>Not primes</h2>
-            {notPrimes.map((num, index) => <h1 key={index}>{num}</h1>)}
+        <div className="history__section not-primes">
+            <h2 className="history__title">Not primes</h2>
+            <div className="history__numbers">
+                {notPrimes.map((num, index) => <HistoryNumber key={index} number={num} />)}
+            </div>
         </div>
     </section>
 );
 
 const mapStateToProps = ({ history }) => ({
-    items: history.items,
     primes: history.primes,
     notPrimes: history.notPrimes,
     visible: history.visible
 })
 
-const  mapDispatchToProps = (dispatch) => (
-    {...bindActionCreators(historyActions, dispatch)}
-)
+const  mapDispatchToProps = (dispatch) => ({
+    setHistoryVisibility: () => dispatch(setHistoryVisibility()),
+    clearHistory: () => dispatch(clearHistory())
+})
 
 export default connect(mapStateToProps, mapDispatchToProps)(History);

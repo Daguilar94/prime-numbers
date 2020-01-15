@@ -1,0 +1,17 @@
+@import '../../utils';
+
+.prime-app {
+    .calculator {
+        @include grid-container(1fr, 1fr 1fr, 20px);
+        justify-items: center;
+        align-items: end;
+        background-color: #fff;
+        height: 100%;
+        flex-grow: 1;
+
+        &__form {
+            @include grid-container(auto auto, auto, 10px);
+            align-items: center;
+        }
+    }
+}

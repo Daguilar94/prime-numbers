@@ -1,15 +1,9 @@
-@mixin flex-container($direction, $align, $justify) {
-  display: flex;
-  flex-direction: $direction;
-  justify-content: $justify;
-  align-items: $align;
-}
+@import 'utils';
 
 .prime-app {
   @include flex-container(row, center, center);
   text-align: center;
   height: 100vh;
   width: 100vw;
-  max-width: 1092px;
   margin: 0 auto;
 }

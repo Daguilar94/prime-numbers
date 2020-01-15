@@ -1,6 +1,6 @@
 import React from 'react';
 
-import NumberForm from './containers/form';
+import Calculator from './containers/calculator';
 import History from './containers/history';
 
 import './App.scss';
@@ -8,7 +8,7 @@ import './App.scss';
 function App() {
   return (
     <div className="prime-app">
-      <NumberForm />
+      <Calculator />
       <History />
     </div>
   );

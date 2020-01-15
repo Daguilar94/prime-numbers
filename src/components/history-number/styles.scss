@@ -1,0 +1,13 @@
+@import '../../utils';
+
+.prime-app {
+    .history {
+        &__number {
+            font-size: 40px;
+            padding: 10px;
+            margin: 5px;
+            color: white;
+            background-color: $primary-color;
+        }
+    }
+}

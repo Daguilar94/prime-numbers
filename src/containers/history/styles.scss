@@ -1,0 +1,42 @@
+@import '../../utils';
+
+.prime-app {
+    .history {
+        @include grid-container(1fr, repeat(2, 50%), 1px);
+        position: relative;
+        width: 0px;
+        height: 100%;
+        background-color: $disabled-color;
+        border-left: 1px solid $disabled-color;
+        transition: width 0.53s ease-in-out;
+
+        &__section {
+            @include flex-container(column, center, flex-start);
+            background-color: white;
+            padding: 5px;
+        }
+
+        &__title {
+           color: $primary-color; 
+           margin: 0;
+           padding: 5px 0;
+           white-space: nowrap;
+        }
+
+        &__numbers {
+            @include flex-container(row, flex-start, flex-start);
+            flex-wrap: wrap;
+            overflow-y: auto;
+        }
+
+        &--visible {
+            width: 50%;
+        }
+
+        &__toggle {
+            position: absolute;
+            transform: translate(-69%, -50%) rotate(-90deg);
+            top: 50%;
+        }
+    }
+}

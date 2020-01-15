@@ -1,0 +1,18 @@
+// variables
+$primary-color: #3f51b5;
+$disabled-color: rgba(0, 0, 0, 0.12);
+
+// mixins
+@mixin flex-container($direction, $align, $justify) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $justify;
+  align-items: $align;
+}
+
+@mixin grid-container($template-columns, $template-rows, $gap) {
+  display: grid;
+  grid-template-columns: $template-columns;
+  grid-template-rows: $template-rows;
+  grid-gap: $gap
+}

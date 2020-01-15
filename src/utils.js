@@ -2,13 +2,13 @@ export const validateNumber = function(value) {
     let errorMessage = "";
     let isValidNumber = true;
 
-    const validInput = /(^-?\d+$)/.test(value) || value === "";
+    const validInput = /(^-?\d+(.\d+)?$)/.test(value) || value === "";
     const isNumber = Number(value) || Number(value) === 0;
     const validSize = isNumber && value <= Math.pow(2, 31) - 1 && value >= -Math.pow(2, 31) + 1;
 
     if (!validInput) {
         isValidNumber = false;
-        errorMessage = "Invalid input"
+        errorMessage = "Please use numeric values"
     }
 
     if(isValidNumber && !validSize) {

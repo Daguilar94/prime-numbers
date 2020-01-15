@@ -1,0 +1,13 @@
+@import '../../utils';
+
+.prime-app {
+    .prime-alert {
+        @include flex-container(column, center, center);
+        font-size: 30px;
+        align-self: flex-start;
+
+        &__icon {
+            font-size: 30px;
+        }
+    }
+}

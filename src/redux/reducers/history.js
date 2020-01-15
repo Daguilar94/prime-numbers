@@ -8,7 +8,7 @@ const historyInitialState = {
     items: {},
     primes: [],
     notPrimes: [],
-    visible: true
+    visible: false
 };
 
 export default function history(state = historyInitialState, action) {

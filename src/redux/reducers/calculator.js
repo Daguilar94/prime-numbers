@@ -1,7 +1,7 @@
 import {
     UPDATE_NUMBER_VALUE,
     SET_IS_PRIME
-} from '../actions/form';
+} from '../actions/calculator';
 
 const formInitialState = {
     number: "",
