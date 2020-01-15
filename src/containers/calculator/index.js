@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import { updateNumberValue, submitForm } from '../../redux/actions/calculator';
 import { Icon, Fab, TextField } from '@material-ui/core';
 import PrimeAlert from '../../components/prime-alert/index.js';
@@ -44,5 +45,18 @@ const  mapDispatchToProps = (dispatch) => ({
     updateNumberValue: args => dispatch(updateNumberValue(args)),
     submitForm: args => dispatch(submitForm(args))
 })
+
+Calculator.propTypes = {
+    number: PropTypes.string.isRequired,
+    isValid: PropTypes.bool.isRequired,
+    isPrime: PropTypes.oneOf([true, false, null]),
+    errorMessage: PropTypes.string.isRequired,
+    updateNumberValue: PropTypes.func.isRequired,
+    submitForm: PropTypes.func.isRequired
+}
+
+Calculator.defaultProps = {
+    isPrime: null
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(Calculator);

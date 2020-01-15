@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import {
     setHistoryVisibility,
     clearHistory
@@ -43,5 +44,17 @@ const  mapDispatchToProps = (dispatch) => ({
     setHistoryVisibility: () => dispatch(setHistoryVisibility()),
     clearHistory: () => dispatch(clearHistory())
 })
+
+History.propTypes = {
+    primes: PropTypes.array.isRequired,
+    notPrimes: PropTypes.array.isRequired,
+    visible: PropTypes.bool.isRequired,
+    setHistoryVisibility: PropTypes.func.isRequired,
+    clearHistory: PropTypes.func.isRequired
+}
+
+History.defaultProps = {
+    isPrime: null
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(History);

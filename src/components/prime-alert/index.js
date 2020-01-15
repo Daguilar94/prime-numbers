@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Icon } from '@material-ui/core';
 import './styles.scss';
 
@@ -19,4 +20,12 @@ export default function PrimeAlert({ isPrime }) {
             <span>{alertInfo.text}</span>
         </div>
     )
+}
+
+PrimeAlert.propTypes = {
+    isPrime: PropTypes.oneOf([true, false, null]),
+}
+
+PrimeAlert.defaultProps = {
+    isPrime: null
 }
