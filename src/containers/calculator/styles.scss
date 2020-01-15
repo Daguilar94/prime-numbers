@@ -13,5 +13,16 @@
             @include grid-container(auto auto, auto, 10px);
             align-items: center;
         }
+
+        @media screen and (max-width: $medium-screen) {
+            &__form {
+                @include grid-container(auto, auto auto, 10px);
+                align-items: center;
+            }
+
+            .search {
+                justify-self: center;
+            }
+        }
     }
 }

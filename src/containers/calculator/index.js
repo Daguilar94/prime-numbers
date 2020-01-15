@@ -25,6 +25,7 @@ const Calculator = ({ number, isValid, isPrime, errorMessage, updateNumberValue,
                     color="primary"
                     type="submit"
                     disabled={!isValid || !number}
+                    className="search"
                 >
                     {submitted ? <Icon>refresh</Icon> : <Icon>search</Icon>}
                 </Fab>

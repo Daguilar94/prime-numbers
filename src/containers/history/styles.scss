@@ -39,4 +39,10 @@
             top: 50%;
         }
     }
+
+    @media screen and (max-width: $medium-screen) {
+        .history {
+            display: none;
+        }
+    }
 }
